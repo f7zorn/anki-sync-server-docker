@@ -16,7 +16,7 @@ This image is available for following architectures:
 
 The container and the actions are auto-updated whenever a new version of anki is released. This is done by a GitHub Action and I can forget this project exists :).
 
-You can find this image on [GHCR](https://github.com/z0rrn/anki-sync-server-docker/pkgs/container/anki-sync-server) and on [Docker Hub](https://hub.docker.com/r/zorrn/anki-sync-server).
+You can find this image on [GHCR](https://github.com/f7zorn/anki-sync-server-docker/pkgs/container/anki-sync-server) and for legacy support on [Docker Hub](https://hub.docker.com/r/zorrn/anki-sync-server) and my old [GHCR](https://github.com/z0rrn/anki-sync-server-docker/pkgs/container/anki-sync-server).
 
 Available tags:
 
@@ -30,9 +30,9 @@ This is a basic docker-compose.yml to setup anki.
 
 ```yaml
 services:
-  # https://github.com/z0rrn/anki-sync-server-docker
+  # https://github.com/f7zorn/anki-sync-server-docker
   anki-sync-server:
-    image: ghcr.io/z0rrn/anki-sync-server:25.02
+    image: ghcr.io/f7zorn/anki-sync-server:25.02
     # These are sample passwords, please change them
     environment:
       - SYNC_USER1=panda:rsfPz4NXELBxmJ

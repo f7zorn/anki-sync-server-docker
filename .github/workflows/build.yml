@@ -115,7 +115,7 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           registry: ghcr.io
-          username: z0rrn
+          username: f7zorn
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Login to Docker Hub
@@ -138,8 +138,9 @@ jobs:
         uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
         with:
           images: |
-            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'ghcr.io/z0rrn/anki-sync-server' || 'ghcr.io/z0rrn/dev-anki-sync-server' }}
-            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'docker.io/zorrn/anki-sync-server' || '' }}
+            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'ghcr.io/f7zorn/anki-sync-server' || 'ghcr.io/f7zorn/anki-sync-server-dev' }}
+            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'docker.io/z0rrn/anki-sync-server' || '' }}
+            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'docker.io/f7zorn/anki-sync-server' || '' }}
           flavor: |
             latest=false
             prefix=${{ github.event_name == 'pull_request' && format('pr-{0}-', github.event.number) || (github.ref_name != 'main' && format('branch-{0}-', github.ref_name) || '') }}
@@ -154,9 +155,9 @@ jobs:
             type=ref,event=pr
           labels: |
             org.opencontainers.image.title=Anki Sync Server
-            org.opencontainers.image.url=https://github.com/z0rrn/anki-sync-server-docker
+            org.opencontainers.image.url=https://github.com/f7zorn/anki-sync-server-docker
             org.opencontainers.image.description=Anki Sync Server is a third-party image that provides a server for syncing Anki decks.
-            org.opencontainers.image.source=https://github.com/z0rrn/anki-sync-server-docker
+            org.opencontainers.image.source=https://github.com/f7zorn/anki-sync-server-docker
             org.opencontainers.image.created={{commit_date 'YYYY-MM-DDTHH:mm:ss.SSS[Z]'}}
             org.opencontainers.image.revision={{sha}}
             org.opencontainers.image.version=${{ env.anki_version }}
