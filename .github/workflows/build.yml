@@ -101,7 +101,6 @@ jobs:
 
     permissions:
       contents: read # Normally added by default to checkout code
-      packages: write # Publish packages
 
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -116,7 +115,7 @@ jobs:
         with:
           registry: ghcr.io
           username: f7zorn
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_PUSH_GHCR_ANKI }}
 
       - name: Login to Docker Hub
         uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
@@ -139,6 +138,7 @@ jobs:
         with:
           images: |
             ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'ghcr.io/f7zorn/anki-sync-server' || 'ghcr.io/f7zorn/anki-sync-server-dev' }}
+            ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'ghcr.io/z0rrn/anki-sync-server' || '' }}
             ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && 'docker.io/zorrn/anki-sync-server' || '' }}
           flavor: |
             latest=false
